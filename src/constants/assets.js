@@ -21,7 +21,7 @@ export const ASSETS = {
   fpts: fpt_corp,
   bg,
   bg2,
-  cv: "/public/Danny_resume.pdf",
+  cv: "/Danny_resume.pdf",
   SFVN,
   ISV,
   test,
