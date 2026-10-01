@@ -1,11 +1,11 @@
-import { useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
-import { HiMenu, HiX } from 'react-icons/hi'
-import { useResponsive } from '../../hooks/useResponsive'
-import { horizontalPadding, verticalPadding } from '../../constants/sizes'
-import { NAV_ITEMS } from '../../data/content'
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { HiMenu, HiX } from "react-icons/hi";
+import { useResponsive } from "../../hooks/useResponsive";
+import { horizontalPadding, verticalPadding } from "../../constants/sizes";
+import { NAV_ITEMS } from "../../data/content";
 
-function NavItem({ title, onClick, textClass = 'text-white' }) {
+function NavItem({ title, onClick, textClass = "text-white" }) {
   return (
     <button
       type="button"
@@ -14,28 +14,26 @@ function NavItem({ title, onClick, textClass = 'text-white' }) {
     >
       {title}
     </button>
-  )
+  );
 }
 
 export default function Header({ onNavItemSelected }) {
-  const { isDesktop, isTablet, isMobile } = useResponsive()
-  const [drawerOpen, setDrawerOpen] = useState(false)
+  const { isDesktop, isTablet, isMobile } = useResponsive();
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
-  const hPad = horizontalPadding({ isDesktop, isTablet })
-  const vPad = verticalPadding({ isDesktop, isTablet })
+  const hPad = horizontalPadding({ isDesktop, isTablet });
+  const vPad = verticalPadding({ isDesktop, isTablet });
 
   const handleSelect = (item) => {
-    setDrawerOpen(false)
-    onNavItemSelected(item)
-  }
+    setDrawerOpen(false);
+    onNavItemSelected(item);
+  };
 
   if (isMobile) {
     return (
       <>
-        <header
-          className="sticky top-0 z-40 flex items-center justify-between bg-ink px-4 py-3 shadow-sm"
-        >
-          <span className="text-2xl font-bold text-white">DucBH</span>
+        <header className="sticky top-0 z-40 flex items-center justify-between bg-ink px-4 py-3 shadow-sm">
+          <span className="text-2xl font-bold text-white">Danny</span>
           <button
             type="button"
             aria-label="Open menu"
@@ -58,13 +56,13 @@ export default function Header({ onNavItemSelected }) {
               />
               <motion.aside
                 className="fixed left-0 top-0 z-50 h-full w-72 bg-ink text-white shadow-xl"
-                initial={{ x: '-100%' }}
+                initial={{ x: "-100%" }}
                 animate={{ x: 0 }}
-                exit={{ x: '-100%' }}
-                transition={{ type: 'tween', duration: 0.25 }}
+                exit={{ x: "-100%" }}
+                transition={{ type: "tween", duration: 0.25 }}
               >
                 <div className="flex items-center justify-between px-6 py-6">
-                  <span className="text-xl font-bold">DucBH</span>
+                  <span className="text-xl font-bold">Danny</span>
                   <button
                     type="button"
                     aria-label="Close menu"
@@ -90,20 +88,29 @@ export default function Header({ onNavItemSelected }) {
           )}
         </AnimatePresence>
       </>
-    )
+    );
   }
 
   return (
     <header
       className="flex items-center justify-between bg-ink"
-      style={{ paddingLeft: hPad, paddingRight: hPad, paddingTop: vPad, paddingBottom: vPad }}
+      style={{
+        paddingLeft: hPad,
+        paddingRight: hPad,
+        paddingTop: vPad,
+        paddingBottom: vPad,
+      }}
     >
-      <span className="text-2xl font-bold text-white">DucBH</span>
+      <span className="text-2xl font-bold text-white">Danny</span>
       <nav className="flex items-center">
         {NAV_ITEMS.map((item) => (
-          <NavItem key={item} title={item} onClick={() => onNavItemSelected(item)} />
+          <NavItem
+            key={item}
+            title={item}
+            onClick={() => onNavItemSelected(item)}
+          />
         ))}
       </nav>
     </header>
-  )
+  );
 }

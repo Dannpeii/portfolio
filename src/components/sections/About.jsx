@@ -1,71 +1,149 @@
-import { motion } from 'framer-motion'
-import { useResponsive } from '../../hooks/useResponsive'
-import { ASSETS } from '../../constants/assets'
-import { EDUCATION, SKILLS } from '../../data/content'
-import SkillCard from '../common/SkillCard'
+import { motion } from "framer-motion";
+import { ASSETS } from "../../constants/assets";
+import { EDUCATION, ABOUT } from "../../data/content";
+
+const TECHNICAL_SKILLS = [
+  "Playwright",
+  "Selenium",
+  "Java",
+  ".NET / ASP.NET",
+  "RESTful API",
+  "GraphQL",
+  "Flutter",
+  "Dart",
+  "MSSQL",
+  "MySQL",
+  "Git",
+  "Tortoise",
+  "Postman",
+];
+
+const CORE_SKILLS = [
+  "Teamwork",
+  "Problem Solving",
+  "Presentation",
+  "Adaptability",
+  "Communication",
+  "Reading & comprehending documentation",
+  "Bug Lifecycle & Defect Analysis",
+];
 
 export default function About() {
-  const { isDesktop, isTablet, isMobile } = useResponsive()
-
   return (
-    <div className={isMobile ? '' : 'mx-[10%]'}>
-      <div className="h-8" />
-
+    <section
+      id="about"
+      className="relative w-full max-w-6xl mx-auto px-6 py-16 md:py-24"
+    >
+      {/* Centered Minimal Header */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.5 }}
-        className={`w-full rounded-2xl bg-white p-4 shadow-[0_1px_5px_rgba(0,0,0,0.2)] ${
-          isDesktop ? 'mx-15' : ''
-        }`}
+        className="text-center mb-14 md:mb-18"
       >
-        {isMobile ? (
-          <div className="flex flex-col items-start">
-            <h3 className="text-xl font-bold text-ink">{EDUCATION.degree}</h3>
-            <p className="mt-2 italic text-ink">{EDUCATION.school}</p>
-            <p className="mt-2 italic text-ink">{EDUCATION.years}</p>
-            <img src={ASSETS.fpt} alt="FPT University logo" className="mx-auto mt-4 h-[15vh] object-cover" />
-          </div>
-        ) : isTablet ? (
-          <div className="flex flex-col items-start">
-            <h3 className="text-2xl font-bold text-ink">{EDUCATION.degree}</h3>
-            <p className="mt-2 text-ink">{EDUCATION.school}</p>
-            <p className="mt-2 text-ink">{EDUCATION.years}</p>
-            <img src={ASSETS.fpt} alt="FPT University logo" className="mx-auto mt-4 h-[15vh] object-cover" />
-          </div>
-        ) : (
-          <div className="mx-20 flex items-center justify-evenly gap-8">
-            <div className="flex flex-[2] flex-col items-start">
-              <h3 className="text-2xl font-bold text-ink">{EDUCATION.degree}</h3>
-              <p className="mt-2 text-ink">{EDUCATION.school}</p>
-              <p className="mt-2 text-ink">{EDUCATION.years}</p>
-            </div>
-            <img src={ASSETS.fpt} alt="FPT University logo" className="h-[15vh] flex-1 object-contain" />
-          </div>
-        )}
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-500/30 bg-emerald-950/40 backdrop-blur-sm text-xs font-mono text-emerald-300 mb-3 shadow-sm">
+          <span>// 01. ABOUT</span>
+        </div>
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white">
+          About Me
+        </h2>
       </motion.div>
 
-      <div className="h-15" />
-
-      <h2 className="text-center text-2xl font-bold text-ink">What I Can Do?</h2>
-      <div className="h-4" />
-
-      <div
-        className={
-          isMobile
-            ? 'flex flex-col gap-4'
-            : isTablet
-            ? 'grid grid-cols-2 gap-4 [&>*:nth-child(3)]:col-span-2'
-            : 'mx-15 grid grid-cols-3 gap-15'
-        }
+      {/* Main Container Glass Card */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.6 }}
+        className="p-8 sm:p-10 rounded-3xl bg-black/25 backdrop-blur-md border border-white/10 shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start"
       >
-        {SKILLS.map((skill) => (
-          <SkillCard key={skill.title} {...skill} />
-        ))}
-      </div>
+        {/* Left Column: Education */}
+        <div className="lg:col-span-5 flex items-start gap-5 pl-1">
+          <div className="w-0.75 self-stretch bg-emerald-500 rounded-full" />
 
-      <div className="h-8" />
-    </div>
-  )
+          <div className="flex flex-col justify-between py-1">
+            <div>
+              <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-white">
+                {EDUCATION.degree}
+              </h3>
+              <p className="mt-1 text-sm font-medium text-neutral-300">
+                {EDUCATION.school} | {EDUCATION.years}
+              </p>
+            </div>
+
+            <div className="mt-8 pt-4">
+              <div className="inline-flex p-3 rounded-xl bg-white/90 shadow-inner">
+                <img
+                  src={ASSETS.fpt}
+                  alt="FPT University"
+                  className="h-10 sm:h-12 w-auto object-contain"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Column: Skill Pills */}
+        <div className="lg:col-span-7 flex flex-col space-y-8">
+          {/* Technical Skills */}
+          <div>
+            <p className="font-mono text-xs uppercase tracking-widest text-emerald-400 mb-3.5">
+              Technical Skills
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {TECHNICAL_SKILLS.map((tech) => (
+                <span
+                  key={tech}
+                  className="px-3 py-1.5 rounded-lg border border-white/10 bg-neutral-900/80 text-neutral-200 text-xs sm:text-sm font-mono font-medium shadow-sm hover:border-emerald-500/50 hover:bg-neutral-800 transition-colors"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Core Skills */}
+          <div>
+            <p className="font-mono text-xs uppercase tracking-widest text-emerald-400 mb-3.5">
+              Core Skills
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {CORE_SKILLS.map((skill) => (
+                <span
+                  key={skill}
+                  className="px-3 py-1.5 rounded-lg border border-white/10 bg-neutral-900/50 text-neutral-300 text-xs sm:text-sm font-medium hover:border-white/20 transition-colors"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Languages */}
+          <div className="pt-4 border-t border-white/10">
+            <p className="font-mono text-xs uppercase tracking-widest text-emerald-400 mb-3">
+              Languages
+            </p>
+            <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-neutral-300">
+              <span className="flex items-center gap-1.5">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                {ABOUT.Vietnamese}
+              </span>
+              <span className="text-neutral-600">/</span>
+              <span className="flex items-center gap-1.5">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                {ABOUT.English}
+              </span>
+              <span className="text-neutral-600">/</span>
+              <span className="flex items-center gap-1.5">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                {ABOUT.Chinese}
+              </span>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    </section>
+  );
 }
